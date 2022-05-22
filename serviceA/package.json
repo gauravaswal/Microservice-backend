@@ -1,0 +1,29 @@
+{
+  "name": "servicea",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon — exec babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.3.0"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.17.10",
+    "@babel/plugin-transform-runtime": "^7.17.10",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/runtime": "^7.17.9",
+    "nodemon": "^2.0.15"
+  }
+}

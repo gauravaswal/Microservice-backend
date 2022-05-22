@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "phpmyadmin",
+    "password": "root@123",
+    "database": "microservice",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "phpmyadmin",
+    "password": "root@123",
+    "database": "microservice",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "phpmyadmin",
+    "password": "root@123",
+    "database": "microservice",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
