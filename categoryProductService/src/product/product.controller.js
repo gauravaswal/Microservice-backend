@@ -1,6 +1,6 @@
 
-const categoryService = require("./category.service")
-const { messages, responseObject, errorsobject, orderObject,responsewithPaginationObject } = require("../../helpers/index")
+const productService = require("./product.service")
+const { messages, responseObject, errorsobject, orderObject, responsewithPaginationObject } = require("../../helpers/index")
 
 exports.creates = async (request, h) => {
     try {
@@ -9,11 +9,11 @@ exports.creates = async (request, h) => {
                 name: request.payload.name.trim()
             }
         }
-        const checktNameExist = await categoryService.CategoryFindOne(payload, h)
+        const checktNameExist = await productService.ProductFindOne(payload, h)
         if (checktNameExist?.data) {
             return responseObject(request, h, false, 400, messages.CATEGORY_NAME_EXIST, {})
         }
-        const result = await categoryService.CategoryCreate(request.payload, h)
+        const result = await productService.ProductCreate(request.payload, h)
         if (result?.code == 201) {
             return responseObject(request, h, true, result.code, messages.CATEGORY_CREATED, result.data)
 

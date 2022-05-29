@@ -3,13 +3,15 @@ const categorController  = require("./categories.controller")
 //  import  categorController from "./categories.controller"
 const userRoutes = [
     {
+        method: 'POST',
+        path: '/category/create',
+        handler: categorController.creates
+        
+    },
+    {
         method: 'GET',
-        path: '/',
-        handler: categorController.user
-        // (request, h) => {
-
-        //     return 'Hello World!';
-        // }
+        path: '/category/list',
+        handler: categorController.list
     }
 ]
 

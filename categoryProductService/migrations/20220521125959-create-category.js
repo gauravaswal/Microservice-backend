@@ -9,21 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      slug: {
         type: Sequelize.STRING,
         unique: true
       },
+      image: {
+        type: Sequelize.STRING,
+        required: false
+      },
+      description: {
+        type: Sequelize.STRING,
+        required: false
+      },
+      isdeleted: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
       createdAt: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATE(3),
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)'),
       },
       updatedAt: {
-        type: Sequelize.DATE,
+        type:Sequelize.DATE(3),
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)'),
       }
     });
