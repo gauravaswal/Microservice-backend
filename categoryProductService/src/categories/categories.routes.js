@@ -1,7 +1,7 @@
 const Hapi = require('@hapi/hapi');
 const categorController  = require("./categories.controller")
 //  import  categorController from "./categories.controller"
-const userRoutes = [
+const categoryRoutes = [
     {
         method: 'POST',
         path: '/category/create',
@@ -12,7 +12,17 @@ const userRoutes = [
         method: 'GET',
         path: '/category/list',
         handler: categorController.list
+    },
+    {
+        method: 'GET',
+        path: '/category/csv',
+        handler: categorController.csv
+    },
+    {
+        method: 'GET',
+        path: '/category/dummy',
+        handler: categorController.getList
     }
 ]
 
-module.exports = userRoutes
+module.exports = categoryRoutes

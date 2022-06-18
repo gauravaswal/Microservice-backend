@@ -1,46 +1,27 @@
-const Product = require("../../models/index").Product
+const ProductModel = require("../../models/index").Product
 const { messages, errorsobject } = require("../../helpers/index")
-exports.CategoryCreate = async (data, h) => {
+exports.ProductCreate = async (data, h) => {
     try {
-        const product = await Product.create(data)
-        if (product) {
+        const result = await ProductModel.create(data)
+        if (result) {
             return {
                 code: 201,
                 success: true,
-                data: product
+                data: result
             }
         } else {
             return errorsobject(h, false, 500, messages.SOMETHING_WENT_WRONG)
         }
     } catch (err) {
-        console.log("--service-catch", err)
         return errorsobject(h, false, 500, messages.SOMETHING_WENT_WRONG)
     }
 }
-exports.CategoryFindOne = async (data, h) => {
-    try {
-        const Category = await category.findOne(data)
-        return {
-            code: 200,
-            success: true,
-            data: Category
-        }
-    } catch (err) {
-        console.log("--service-findOne", err)
-        return errorsobject(h, false, 500, messages.SOMETHING_WENT_WRONG)
+/* this function take two arguments first is query and 2nd is res*/
+exports.ProductFindOne = async (data, h) => {
+    const result = await ProductModel.findOne(data)
+    return {
+        code: 200,
+        success: true,
+        data: result
     }
-},
-    exports.CategoryFindAll = async (data, h) => {
-        try {
-            const Category = await category.findAndCountAll(data)
-            return {
-                code: 200,
-                success: true,
-                data: Category.rows,
-                totalRecord: Category.count
-            }
-        } catch (err) {
-            console.log("--service-findAll", err)
-            return errorsobject(h, false, 500, messages.SOMETHING_WENT_WRONG)
-        }
-    }
+}

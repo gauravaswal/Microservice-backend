@@ -48,6 +48,8 @@ exports.messages = {
     "SOMETHING_WENT_WRONG": "Oops Something went wrong.Please try again",
     "CATEGORY_DELETED": "Category deleted successfully",
     "PRODUCT_ADDED": "Product created successfully",
+    "PRODUCT_NAME_EXIST": "Product name already exist",
+
     "PRODUCT_GET": "Product get successfully",
     "PRODUCT_DELETED": "Product deleted successfully",
     "PRODUCT_LIST": "Product listing get successfully"
