@@ -23,6 +23,12 @@ const productRoutes = [
 
     },
     {
+        method: 'GET',
+        path: '/product/list',
+        handler: productController.list
+
+    },
+    {
         path: '/product/upload',
         method: 'POST',
         options: {

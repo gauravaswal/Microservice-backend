@@ -1,9 +1,15 @@
 const ProductModel = require("../../models/index").Product
+const ProductImageModel = require("../../models/index").ProductImage
+
 const { messages, errorsobject } = require("../../helpers/index")
 exports.ProductCreate = async (data, h) => {
     try {
         const result = await ProductModel.create(data)
         if (result) {
+            let productImage = data.image.filter(item => {
+                return iutem.productId = result.id
+            })
+            await ProductImageModel.bulkcreate(productImage)
             return {
                 code: 201,
                 success: true,
@@ -23,5 +29,17 @@ exports.ProductFindOne = async (data, h) => {
         code: 200,
         success: true,
         data: result
+    }
+}
+exports.ProductFindAll = async (data, h) => {
+    try {
+        const result = await ProductModel.findAll(data)
+        return {
+            code: 200,
+            success: true,
+            data: result
+        }
+    } catch (err) {
+        return errorsobject(h, false, 500, messages.SOMETHING_WENT_WRONG)
     }
 }

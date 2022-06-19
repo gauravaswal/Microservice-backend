@@ -1,22 +1,11 @@
 
 const productService = require("./product.service")
+const category = require("../../models/index").Category
+const productImage = require("../../models/index").ProductImage
+
 const { messages, responseObject, errorsobject, orderObject, responsewithPaginationObject } = require("../../helpers/index")
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-// const multer = require('multer')
-
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, '/uploads/')
-//     },
-//     filename: function (req, file, cb) {
-//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-//       cb(null, file.fieldname + '-' + uniqueSuffix)
-//     }
-//   })
-  
-//   const upload = multer({ storage: storage })
-
 
 exports.creates = async (request, h) => {
     try {
@@ -26,7 +15,7 @@ exports.creates = async (request, h) => {
             }
         }
         const checktProductNameExist = await productService.ProductFindOne(payload, h)
-                
+
         if (checktProductNameExist?.data) {
             return responseObject(request, h, false, 400, messages.PRODUCT_NAME_EXIST, {})
         }
@@ -45,21 +34,34 @@ exports.creates = async (request, h) => {
 exports.list = async (request, h) => {
     try {
         const { page, limit } = request.query
+        const pageNo = page ? page : orderObject.page
         const pagelimit = parseInt(limit) ? parseInt(limit) : orderObject.limit
-        const offset = ((parseInt(page) - 1) * pagelimit)
+        const offset = ((parseInt(pageNo) - 1) * pagelimit)
         let payload = {}
-        if (request.payload.type == "category") {
+
+        if (request.query.type == "category") {
+            let whereClause = {}
+            if (request.query.categoryId) {
+                whereClause = {
+                    id: request.query.categoryId
+                }
+            }
             payload = {
-                where: {
-                    name: { [Op.like]: `%${request.query.search}%` }
+                include: [{
+                    model: category,
+                    as: 'productCategory',
+                    where: whereClause
                 },
-                // include: {
-                //     model:
-                //   }
+                {
+                    model: productImage,
+                    as: 'productImages',
+                }
+                ]
             }
         } else {
 
         }
+        console.log("-outside", payload)
         // const payload = {
         //     where: {
         //         isdeleted: false

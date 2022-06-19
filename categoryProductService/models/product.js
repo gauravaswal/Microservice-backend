@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       type: DataTypes.INTEGER
     },
-    categorId: {
+    categoryId: {
       type: DataTypes.INTEGER,
       references: {
         model: 'Categories',
@@ -42,6 +42,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "categoryId",
       targetKey: "id",
       as: "productCategory",
+    });
+    Product.hasMany(models.ProductImage, {
+      foreignKey: "productId",
+      as: "productImages",
     });
   };
   return Product

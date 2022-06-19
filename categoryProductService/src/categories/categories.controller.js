@@ -33,8 +33,9 @@ exports.creates = async (request, h) => {
 exports.list = async (request, h) => {
     try {
         const { page, limit } = request.query
+        const pageno = page ? page : orderObject.page
         const pagelimit = parseInt(limit) ? parseInt(limit) : orderObject.limit
-        const offset = ((parseInt(page) - 1) * pagelimit)
+        const offset = ((parseInt(pageno) - 1) * pagelimit)
         const payload = {
             where: {
                 isdeleted: false
