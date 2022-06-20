@@ -9,6 +9,7 @@ const Op = Sequelize.Op;
 
 exports.creates = async (request, h) => {
     try {
+        console.log("req",request.payload)
         const payload = {
             where: {
                 name: request.payload.name.trim()

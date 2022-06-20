@@ -24,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING
     },
+    price: {
+      type: DataTypes.FLOAT
+    },
     isDiscount: {
       type: DataTypes.BOOLEAN,
       defaultValue: false,

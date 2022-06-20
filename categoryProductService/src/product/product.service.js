@@ -5,11 +5,15 @@ const { messages, errorsobject } = require("../../helpers/index")
 exports.ProductCreate = async (data, h) => {
     try {
         const result = await ProductModel.create(data)
+        let productImage = []
         if (result) {
-            let productImage = data.image.filter(item => {
-                return iutem.productId = result.id
+             data.image.forEach(item => {
+                productImage.push({
+                    image:item,
+                    productId:result.id
+                })
             })
-            await ProductImageModel.bulkcreate(productImage)
+            await ProductImageModel.bulkCreate(productImage)
             return {
                 code: 201,
                 success: true,
@@ -19,6 +23,7 @@ exports.ProductCreate = async (data, h) => {
             return errorsobject(h, false, 500, messages.SOMETHING_WENT_WRONG)
         }
     } catch (err) {
+        console.log("-err",err)
         return errorsobject(h, false, 500, messages.SOMETHING_WENT_WRONG)
     }
 }

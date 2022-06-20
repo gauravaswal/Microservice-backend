@@ -48,6 +48,15 @@ const productRoutes = [
             return response
         },
     },
+    {
+        method: 'GET',
+        path: '/upload/{file*}',
+        handler: {
+            directory: {
+                path: 'upload'
+            }
+        }
+    }
 ]
 
 module.exports = productRoutes
